@@ -34,6 +34,24 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(height_value.getText().length()>0 && weight_value.getText().length()>0){
                     height=Float.parseFloat(height_value.getText().toString());
+                    weight=Float.parseFloat(weight_value.getText().toString());
+                    BMI = calculateBMI(height,weight);
+                    if(BMI<16){
+                        result.setText("Your BMI: "+BMI+"(Severaly underweigth)");
+                    }
+                    else if (BMI<18.5){
+                        result.setText("Your BMI: "+BMI+"( underweigth)");
+                    }
+                    else if (BMI< 25){
+                        result.setText("Your BMI: "+BMI+"(normal)");
+
+                    }
+                    else if (BMI<30){
+                        result.setText("Your BMI: "+BMI+"(overweight)");
+                    }
+                    else{
+                        result.setText("Your BMI: "+BMI+"(Obese)");
+                    }
 
 
                 }
@@ -73,5 +91,11 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    public float calculateBMI(float height, float weight){
+
+        height=(height/100);
+        return (float) (weight/(height*height));
+
+    }
 
 }
